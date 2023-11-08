@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const prodcutSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
     name:{
         type: String,
         require:[true,"Please Enter product Name"],
@@ -66,4 +66,5 @@ const prodcutSchema = mongoose.Schema({
         default:Date.now
     }
 })
-module.exports = mongoose.model("Product",prodcutSchema)
+
+module.exports = mongoose.model("Product",productSchema)
