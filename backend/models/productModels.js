@@ -3,16 +3,16 @@ const mongoose = require("mongoose")
 const productSchema = mongoose.Schema({
     name:{
         type: String,
-        require:[true,"Please Enter product Name"],
+        required:[true,"Please Enter product Name"],
         trim: true
     },
     description:{
         type: String,
-        require: [true, "Please Enter product Description"]
+        required: [true, "Please Enter product Description"]
     },
     price:{
         type: Number,
-        require: [true, "Please Enter product price"],
+        required: [true, "Please Enter product price"],
         maxLength:[8, "Price cann't exceed 8 characters"]
     },
     rating:{
@@ -23,21 +23,21 @@ const productSchema = mongoose.Schema({
        {
         public_id:{
             type:String,
-            require:true
+            required:true
         },
         url:{
             type:String,
-            require: true
+            required: true
         }
        }
     ],
     category:{
         type: String,
-        require: [true,"Please Enter Product Category"],
+        required: [true,"Please Enter Product Category"],
     },
     stock:{
         type:Number,
-        require:[true, "Please Enter Product Stock"],
+        required:[true, "Please Enter Product Stock"],
         maxLength:[4,"Stock cann't exceed 4 characters"],
         default:1
     },
@@ -49,22 +49,22 @@ const productSchema = mongoose.Schema({
         {
             name:{
                 type:String,
-                require:true,
+                required:true,
             },
             rating:{
                 type:Number,
-                require:true,
+                required:true,
             },
             comment:{
                 type:String,
-                require: true
+                required: true
             }
         }
     ],
     createdAt:{
         type:Date,
         default:Date.now
-    }
+    } 
 })
 
 module.exports = mongoose.model("Product",productSchema)
