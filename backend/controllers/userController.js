@@ -35,7 +35,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(new ErrorHandler("Invalid email or password"), 401);
+    return next(new ErrorHandler("Invalid email or password"), 404);
   }
 
   const isPasswordMatched = user.comparePassword(password);
@@ -50,7 +50,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 // Logout User
 exports.logout = catchAsyncErrors(async (req, res, next) => {
   res.cookie("token", null, {
-    expires: new Date(Date.now()),
+    expires: new Date(0),
     httpOnly: true,
   });
 
@@ -217,9 +217,8 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
-    role:req.body.role,
+    role: req.body.role,
   };
-
 
   const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
@@ -232,21 +231,21 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 // Delete User --admin
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
-  
-  const user = await User.findById(req.params.id)
+  const user = await User.findById(req.params.id);
   // We will remove cloudinary later
 
-  if(!user){
-    return next(new ErrorHandler(`User dose not exist with Id: ${req.params.id},400`))
+  if (!user) {
+    return next(
+      new ErrorHandler(`User dose not exist with Id: ${req.params.id},400`)
+    );
   }
 
-  await user.remove()
+  await user.remove();
 
   res.status(200).json({
     success: true,
+    message: "User Delete Successfully",
   });
 });
-
