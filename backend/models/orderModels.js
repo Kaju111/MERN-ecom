@@ -10,10 +10,12 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+
     state: {
       type: String,
       required: true,
     },
+
     country: {
       type: String,
       required: true,
@@ -34,11 +36,11 @@ const orderSchema = new mongoose.Schema({
         required: true,
       },
       price: {
-        type: String,
+        type: Number,
         required: true,
       },
       quantity: {
-        type: String,
+        type: Number,
         required: true,
       },
       image: {
@@ -71,36 +73,36 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  itemsPrice:{
-    type:Number,
+  itemsPrice: {
+    type: Number,
     required: true,
-    default:0
+    default: 0,
   },
   taxPrice: {
     type: Number,
     required: true,
-    required: true,
+    default: 0,
   },
-   shippingPrice:{
-    type:Number,
+  shippingPrice: {
+    type: Number,
     required: true,
-    default:0
+    default: 0,
   },
-  totalPrice:{
-   type:Number,
-   required: true,
-   default:0
- },
- orderStatus:{
-    type:String,
-    required:true,
-    default: "Processing"
- },
+  totalPrice: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  orderStatus: {
+    type: String,
+    required: true,
+    default: "Processing",
+  },
   deliveredAt: Date,
-  createdAt:{
-    type:Date,
+  createdAt: {
+    type: Date,
     default: Date.now,
- }
+  },
 });
 
-module.exports = mongoose.model("Order",orderSchema)
+module.exports = mongoose.model("Order", orderSchema);
