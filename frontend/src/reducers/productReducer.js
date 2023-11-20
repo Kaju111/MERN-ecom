@@ -1,6 +1,6 @@
 import {
-  ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_FAIL,
+  ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL,
@@ -53,6 +53,7 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         loading: false,
         error: action.payload,
       };
+
     case CLEAR_ERRORS:
       return {
         ...state,

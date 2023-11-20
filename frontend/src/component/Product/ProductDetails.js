@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,8 +12,9 @@ const ProductDetails = ({ match }) => {
   );
 
   useEffect(() => {
-    dispatch(getProductDetails(match.params.id));
-  }, [dispatch, match.params.id]);
+    console.info("Detail match -->", match);
+    // dispatch(getProductDetails(match.params.id));
+  }, []);
 
   return (
     <Fragment>
