@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
 import "./Home.css";
-import Product from "./Product";
+import Product from "./ProductCard";
 import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import Error from "../layout/Error/Error";
+import { CLEAR_ERRORS } from "../../constants/productConstants";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,11 @@ const Home = () => {
   );
 
   useEffect(() => {
+    if (error) {
+      dispatch(CLEAR_ERRORS());
+    }
     dispatch(getProduct());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <Fragment>
