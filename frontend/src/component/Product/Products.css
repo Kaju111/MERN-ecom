@@ -75,6 +75,10 @@
     left: 4vmax;
 }
 
+.filterBox>div {
+    font-size: larger;
+}
+
 .categoryBox {
     padding: 0%;
 }

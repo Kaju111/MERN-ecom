@@ -9,6 +9,7 @@ import ReviewCard from "./ReviewCard.jsx";
 import Loader from "../layout/Loader/Loader.js";
 import Error from "../layout/Error/Error.js";
 import { CLEAR_ERRORS } from "../../constants/productConstants.js";
+import MetaData from "../layout/MetaData.jsx";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,8 @@ const ProductDetails = () => {
             <Loader />
           ) : (
             <Fragment>
+              <MetaData title={`${product.name} -- ECOMMERCE`} />
+
               <div className="ProductDetails">
                 <div>
                   <Carousel>
