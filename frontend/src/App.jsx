@@ -9,19 +9,28 @@ import "./App.css";
 import Products from "./component/Product/Products";
 import Search from "./component/Product/search";
 import LoginSignUp from "./component/User/LoginSignUp";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   React.useEffect(() => {
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
+    store.dispatch(loadUser());
   }, []);
 
   return (
     <div>
       <Header />
+
+      {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
